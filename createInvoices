@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<?php
+
+$servername = "localhost";
+$username = "user1";
+$password = "pass1";
+$dbname = "db0";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+if (!$conn) die("Connection error: " . mysqli_connect_error());
+echo "Connected!<br>";
+
+$sql = "CREATE TABLE Invoices (
+invoice_id INT AUTO_INCREMENT PRIMARY KEY,
+id INT UNSIGNED, CONSTRAINT constraint1 FOREIGN KEY foreign1 (id) REFERENCES Customers(id),
+product_id INT(10),
+product_descripton VARCHAR(100),
+price DECIMAL(10,2),
+timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) echo "Invoices table created!";
+else echo "Error: " . $conn->error;
+
+?>
+
+</body>
+
+</html>
