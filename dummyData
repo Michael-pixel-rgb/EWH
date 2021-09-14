@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<?php
+
+$servername = "localhost";
+$username = "user1";
+$password = "pass1";
+$dbname = "db0";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+if (!$conn) die("Connection error: " . mysqli_connect_error());
+echo "Connected!<br>";
+
+$sql = "INSERT INTO Customers (name, email, created_date) VALUES
+('Jane', 'jane@outlook.com', '2021-09-13'),
+('Paul', 'paul@hotmail.com', '2021-09-13'),
+('Sue', 'sue@gmail.com', '2021-09-13')";
+
+if ($conn->query($sql) === TRUE) echo "New customer(s) created!";
+else echo "Error: " . $conn->error;
+
+$sql = "INSERT INTO Invoices (id, product_id, product_descripton, price) VALUES
+(1, 10012, 'Blazer', 29.99),
+(1, 10115, 'Tie', 6.50),
+(1, 10234, 'T-shirt', 12.50),
+(2, 10309, 'Shorts', 8.50),
+(2, 10655, 'Top', 12.99),
+(3, 10710, 'Skirt', 9.00)";
+
+if ($conn->query($sql) === TRUE) echo "<br>New invoice(s) created!";
+else echo "Error: " . $conn->error;
+
+?>
+
+</body>
+
+</html>
